@@ -1,5 +1,5 @@
 import 'package:corona/src/app.dart';
-import 'package:corona/src/controller/covid_statics_controller.dart';
+import 'package:corona/src/controller/covid_statistics_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       initialBinding: BindingsBuilder(() {
-        Get.put(CovidStaticsController());
+        Get.put(CovidStatisticsController());
       }),
       theme: ThemeData(
         primarySwatch: Colors.blue,
