@@ -64,6 +64,9 @@ void main() {
       covid19Statics.add(Covid19StaticsModel.fromXml(node));
     });
     print(covid19Statics.length);
+    covid19Statics.forEach((covid19) {
+      print('${covid19.stateDt} : ${covid19.decideCnt}');
+    });
   });
 }
 
