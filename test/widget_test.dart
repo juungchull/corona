@@ -59,9 +59,11 @@ void main() {
   test('코로나 전체 통계', () {
     final document = XmlDocument.parse(bookshelfXml);
     final items = document.findAllElements('item');
+    var covid19Statics = <Covid19StaticsModel>[];
     items.forEach((node) {
-      node.findAllElements('accDefRate').map((e) => e.text).forEach(print);
+      covid19Statics.add(Covid19StaticsModel.fromXml(node));
     });
+    print(covid19Statics.length);
   });
 }
 
