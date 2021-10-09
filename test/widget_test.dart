@@ -5,6 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:corona/src/model/covid_statistics.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:xml/xml.dart';
 
@@ -59,73 +60,13 @@ void main() {
   test('코로나 전체 통계', () {
     final document = XmlDocument.parse(bookshelfXml);
     final items = document.findAllElements('item');
-    var covid19Statics = <Covid19StaticsModel>[];
+    var covid19Statics = <Covid19StatisticsModel>[];
     items.forEach((node) {
-      covid19Statics.add(Covid19StaticsModel.fromXml(node));
+      covid19Statics.add(Covid19StatisticsModel.fromXml(node));
     });
     print(covid19Statics.length);
     covid19Statics.forEach((covid19) {
       print('${covid19.stateDt} : ${covid19.decideCnt}');
     });
   });
-}
-
-class Covid19StaticsModel {
-  String? accDefRate;
-  String? accExamCnt;
-  String? accExamCompCnt;
-  String? careCnt;
-  String? clearCnt;
-  String? createDt;
-  String? deathCnt;
-  String? decideCnt;
-  String? examCnt;
-  String? resutlNegCnt;
-  String? seq;
-  String? stateDt;
-  String? stateTime;
-  String? updateDt;
-  Covid19StaticsModel({
-    this.accDefRate,
-    this.accExamCnt,
-    this.accExamCompCnt,
-    this.careCnt,
-    this.clearCnt,
-    this.createDt,
-    this.deathCnt,
-    this.decideCnt,
-    this.examCnt,
-    this.resutlNegCnt,
-    this.seq,
-    this.stateDt,
-    this.stateTime,
-    this.updateDt,
-  });
-
-  factory Covid19StaticsModel.fromXml(XmlElement xml) {
-    return Covid19StaticsModel(
-      accDefRate: xmlUtils.searchResult(xml, 'accDefRate'),
-      accExamCnt: xmlUtils.searchResult(xml, 'accExamCnt'),
-      accExamCompCnt: xmlUtils.searchResult(xml, 'accExamCompCnt'),
-      careCnt: xmlUtils.searchResult(xml, 'careCnt'),
-      clearCnt: xmlUtils.searchResult(xml, 'clearCnt'),
-      createDt: xmlUtils.searchResult(xml, 'createDt'),
-      deathCnt: xmlUtils.searchResult(xml, 'deathCnt'),
-      decideCnt: xmlUtils.searchResult(xml, 'decideCnt'),
-      examCnt: xmlUtils.searchResult(xml, 'examCnt'),
-      resutlNegCnt: xmlUtils.searchResult(xml, 'resutlNegCnt'),
-      seq: xmlUtils.searchResult(xml, 'seq'),
-      stateDt: xmlUtils.searchResult(xml, 'stateDt'),
-      stateTime: xmlUtils.searchResult(xml, 'stateTime'),
-      updateDt: xmlUtils.searchResult(xml, 'updateDt'),
-    );
-  }
-}
-
-class xmlUtils {
-  static String searchResult(XmlElement xml, String key) {
-    return xml.findAllElements(key).map((e) => e.text).isEmpty
-        ? ""
-        : xml.findAllElements(key).map((e) => e.text).first;
-  }
 }
