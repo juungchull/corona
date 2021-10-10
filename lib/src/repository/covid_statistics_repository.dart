@@ -7,7 +7,7 @@ class CovidStatisticsRepository {
   CovidStatisticsRepository() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: "http://openapi.data.go.kr/",
+        baseUrl: "http://openapi.data.go.kr",
         queryParameters: {
           'serviceKey':
               'd7qwhad8e1C7E4WXQamvO/JxElQxzvPbyiq/xZ/ovqIb0IFMcxfUYKd5Ew30riPyda3MoaOTaOs4ZDqYkvdiGw=='
